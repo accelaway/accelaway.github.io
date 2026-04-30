@@ -152,8 +152,9 @@
       <div class="links">
         <a href="https://outlook.office.com">Outlook</a>
         <a href="https://teams.microsoft.com">Teams</a>
-        <a href="https://onedrive.live.com">OneDrive</a>
+        <a href="javascript:void(0)" onclick="openTenantLink(this, 'https://{tenant}-my.sharepoint.com'); return false;" target="_blank">OneDrive</a>
         <a href="https://www.microsoft365.com/sharepoint">SharePoint</a>
+        <a href="javascript:void(0)" onclick="openTenantLink(this, 'https://{tenant}.sharepoint.com'); return false;" target="_blank">SharePoint</a>
       </div>
     </section>
     <section>
@@ -165,9 +166,9 @@
         <a href="https://portal.azure.com">Azure</a>
         <a href="https://security.microsoft.com">Defender</a>
         <a href="https://compliance.microsoft.com">Purview</a>
-        <a href="https://admin.exchange.microsoft.com">Exchange</a>
-        <a href="javascript:void(0)" onclick="openTenantLink('https://{tenant}-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/home'); return false;">SharePoint</a>
-        <a href="https://admin.teams.microsoft.com">Teams</a>
+        <a href="https://admin.exchange.microsoft.com">Exchange Admin</a>
+        <a href="javascript:void(0)" onclick="openTenantLink(this, 'https://{tenant}-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/home'); return false;" target="_blank">SharePoint Admin</a>
+        <a href="https://admin.teams.microsoft.com">Teams Admin</a>
       </div>
     </section>
     <section>
@@ -208,16 +209,12 @@
   </div>
 
   <script>
-    function openTenantLink(template) {
+    function openTenantLink(linkElement, template) {
       const tenant = prompt('Enter your tenant name or tenant ID:');
       if (!tenant) return false;
       const url = template.replace('{tenant}', encodeURIComponent(tenant.trim()));
-      const newWindow = window.open(url, '_blank');
-      if (newWindow) {
-        newWindow.focus();
-      } else {
-        alert('Unable to open a new tab. Please allow popups for this page and try again.');
-      }
+      linkElement.href = url;
+      linkElement.click();
       return false;
     }
   </script>
