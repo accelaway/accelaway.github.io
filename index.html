@@ -168,15 +168,27 @@
     <section>
       <h2>Admin</h2>
       <div class="links">
-        <a href="https://entra.microsoft.com">Entra ID</a>
-        <a href="https://intune.microsoft.com">Intune</a>
-        <a href="https://admin.microsoft.com">M365 Admin Center</a>
-        <a href="https://security.microsoft.com">Microsoft Defender for Cloud Apps</a>
-        <a href="https://compliance.microsoft.com">Microsoft Purview Compliance Portal</a>
-        <a href="https://security.microsoft.com/secure-score">Microsoft Secure Score</a>
-        <a href="https://portal.azure.com">Azure Portal</a>
+        <a href="https://admin.microsoft.com">M365 Admin</a>
+        <a href="https://entra.microsoft.com">Ms Entra</a>
+        <a href="https://intune.microsoft.com">Ms Intune</a>
+        <a href="https://portal.azure.com">Ms Azure Portal</a>
+        <a href="https://security.microsoft.com">Ms Defender</a>
+        <a href="https://compliance.microsoft.com">Ms Purview</a>
+        <a href="https://admin.exchange.microsoft.com">Ms Exchange</a>
+        <a href="#" onclick="return openTenantLink('https://{tenant}-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/home')">Ms SharePoint</a>
+        <a href="https://admin.teams.microsoft.com">Ms Teams</a>
       </div>
     </section>
   </div>
+
+  <script>
+    function openTenantLink(template) {
+      const tenant = prompt('Enter your tenant name or tenant ID:');
+      if (!tenant) return false;
+      const url = template.replace('{tenant}', encodeURIComponent(tenant.trim()));
+      window.open(url, '_blank');
+      return false;
+    }
+  </script>
 </body>
 </html>
