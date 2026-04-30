@@ -175,7 +175,7 @@
         <a href="https://security.microsoft.com">Ms Defender</a>
         <a href="https://compliance.microsoft.com">Ms Purview</a>
         <a href="https://admin.exchange.microsoft.com">Ms Exchange</a>
-        <a href="#" onclick="return openTenantLink('https://{tenant}-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/home')">Ms SharePoint</a>
+        <a href="javascript:void(0)" onclick="openTenantLink('https://{tenant}-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/home'); return false;">Ms SharePoint</a>
         <a href="https://admin.teams.microsoft.com">Ms Teams</a>
       </div>
     </section>
@@ -186,7 +186,12 @@
       const tenant = prompt('Enter your tenant name or tenant ID:');
       if (!tenant) return false;
       const url = template.replace('{tenant}', encodeURIComponent(tenant.trim()));
-      window.open(url, '_blank');
+      const newWindow = window.open(url, '_blank');
+      if (newWindow) {
+        newWindow.focus();
+      } else {
+        alert('Unable to open a new tab. Please allow popups for this page and try again.');
+      }
       return false;
     }
   </script>
