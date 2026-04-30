@@ -214,8 +214,7 @@
       if (!tenant) return false;
       const url = template.replace('{tenant}', encodeURIComponent(tenant.trim()));
       linkElement.href = url;
-      linkElement.click();
-      return false;
+      return true;
     }
   </script>
 </body>
